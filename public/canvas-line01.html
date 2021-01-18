@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Line 01</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="800px" height="800px"></canvas>
+
+    <script>
+        const myc = document.querySelector('#myCanvas');
+        const ctx = myc.getContext('2d');
+
+        ctx.beginPath();
+        ctx.moveTo(50, 50);
+        ctx.lineTo(200, 300);
+        ctx.lineTo(400, 50);
+        ctx.strokeStyle = 'blue';
+        ctx.lineWidth = 20
+        ctx.stroke();
+    </script>
+</body>
+
+</html>
