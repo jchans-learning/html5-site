@@ -12,11 +12,35 @@
     <div id="info" contenteditable="true">
         123
     </div>
+    <button onclick="saveMemo()">Save</button>
 
     <script>
+        const info = document.querySelector('#info')
+
         info.addEventListener('input', function (event) {
             console.log(info.innerText);
-        })
+        });
+
+        function saveMemo() {
+            const data = info.innerHTML;
+
+            localStorage.setItem('tmp-content', JSON.stringify({ data }))
+        }
+
+        (function () {
+            const data = localStorage.getItem('tmp-content');
+            let json;
+            if (data) {
+                try {
+                    json = JSON.parse(data);
+                } catch (ex) {
+                    return;
+                }
+                info.innerHTML = json.data;
+            }
+        })();
+
+
     </script>
 </body>
 
