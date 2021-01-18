@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>div content editable</title>
+</head>
+
+<body>
+
+    <div id="info" contenteditable="true">
+        123
+    </div>
+
+    <script>
+        info.addEventListener('input', function (event) {
+            console.log(info.innerText);
+        })
+    </script>
+</body>
+
+</html>
