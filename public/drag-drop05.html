@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag 05</title>
+    <style>
+        .ball {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #dd6969;
+            text-align: center;
+            line-height: 50px;
+            color: white;
+        }
+
+        .rect {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: lightgrey;
+        }
+
+        #drop2 {
+            width: 300px;
+            height: 300px;
+            background-color: #8ee5b9;
+            left: 300px;
+            top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="rect">
+        <div id="ball1" class="ball" draggable="true">1</div>
+        <div id="ball2" class="ball" draggable="true" style="top:100px; background-color:green;">2</div>
+        <div id="ball3" class="ball" draggable="true" style="top:200px; background-color:blue;">3</div>
+
+    </div>
+    <div class="rect" style="left: 400px;top: 100px; background-color: lightblue;"></div>
+
+
+    <script>
+        const balls = document.querySelectorAll('.ball');
+        const rects = document.querySelectorAll('.rect');
+
+        const onDragStart = event => {
+            const targetId = event.target.id;
+            event.dataTransfer.setData('text', targetId);
+        }
+
+        balls.forEach(el => {
+            el.addEventListener('dragstart', onDragStart);
+        })
+
+        rects.forEach(el => {
+            el.addEventListener('dragover', event => event.preventDefault());
+            el.addEventListener('drop', event => {
+                const elementId = event.dataTransfer.getData('text');
+                console.log(elementId);
+
+                const t = document.querySelector('#' + elementId);
+                event.currentTarget.appendChild(t);
+            });
+        })
+
+    </script>
+</body>
+
+</html>

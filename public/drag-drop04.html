@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag 04</title>
+    <style>
+        .ball {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #dd6969;
+            text-align: center;
+            line-height: 50px;
+            color: white;
+        }
+
+        .rect {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #d67474;
+        }
+
+        #drop2 {
+            width: 300px;
+            height: 300px;
+            background-color: #8ee5b9;
+            left: 300px;
+            top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="ball1" class="ball" draggable="true">1</div>
+    <div id="ball2" class="ball" draggable="true" style="top:100px; background-color:green;">2</div>
+    <div id="ball3" class="ball" draggable="true" style="top:200px; background-color:blue;">3</div>
+
+
+    <div id="drop2" class="rect"></div>
+
+    <script>
+        const balls = document.querySelectorAll('.ball');
+        const drop2 = document.querySelector('#drop2');
+
+        const onDragStart = event => {
+            const targetId = event.target.id;
+            event.dataTransfer.setData('text', targetId);
+        }
+
+        balls.forEach(el => {
+            el.addEventListener('dragstart', onDragStart);
+        })
+
+        drop2.addEventListener('dragover', function (event) {
+            event.preventDefault();
+        });
+        // drop2.addEventListener('dragleave', handler);
+        drop2.addEventListener('drop', event => {
+            const elementID = event.dataTransfer.getData('text');
+            console.log(elementID);
+
+            const t = document.querySelector('#' + elementID);
+
+            const clone = t.cloneNode(true);
+            clone.style.position = 'static';
+            clone.style.display = 'inline-block';
+            clone.removeAttribute('id');
+            drop2.appendChild(clone);
+        });
+    </script>
+</body>
+
+</html>

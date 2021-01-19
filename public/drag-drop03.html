@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag 01</title>
+    <style>
+        .rect {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: #bfe;
+        }
+
+        #drop2 {
+            width: 300px;
+            height: 300px;
+            background-color: #8ee5b9;
+            left: 300px;
+            top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="drag1" class="rect" draggable="true"></div>
+
+    <div id="drop2" class="rect"></div>
+
+    <script>
+        const drag1 = document.querySelector('#drag1');
+        const drop2 = document.querySelector('#drop2');
+
+        const handler = event => {
+            console.log(event.type, event);
+        }
+
+        drag1.addEventListener('dragstart', event => {
+            event.dataTransfer.setData('text', 'abcd');
+        });
+
+        drop2.addEventListener('dragstart', handler);
+        drop2.addEventListener('dragover', function (event) {
+            event.preventDefault();
+        });
+        drop2.addEventListener('dragleave', handler);
+        drop2.addEventListener('drop', event => {
+            alert(event.dataTransfer.getData('text'));
+        });
+    </script>
+</body>
+
+</html>
