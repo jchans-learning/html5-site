@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag 01</title>
+    <style>
+        .rect {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: #bfe;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="rect" draggable="true"></div>
+
+    <script>
+        const rect = document.querySelector('.rect');
+        const handler = event => {
+            console.log(event.type, event);
+        }
+
+        rect.addEventListener('dragstart', handler);
+        rect.addEventListener('drag', handler);
+        rect.addEventListener('dragend', handler);
+    </script>
+</body>
+
+</html>

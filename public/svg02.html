@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>svg 02</title>
+    <style>
+        svg>path {
+            fill: salmon;
+            stroke: slateblue;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <svg width="210mm" height="297mm" version="1.1" viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg">
+        <path
+            d="m56.318 58.586-14.107-7.0329-13.791 7.6342 2.3293-15.59-11.522-10.757 15.547-2.6024 6.67-14.282 7.2792 13.982 15.645 1.93-11.048 11.244z"
+            fill="#ff0" fill-rule="evenodd" stroke-width=".26458" />
+    </svg>
+
+    <script>
+        const star = document.querySelector('svg>path');
+
+        star.addEventListener('mouseover', function () {
+            star.style.fill = "yellow";
+        });
+
+        star.addEventListener('mouseout', function () {
+            star.style.fill = "blue";
+        });
+
+    </script>
+</body>
+
+</html>
