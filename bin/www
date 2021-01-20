@@ -30,7 +30,16 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 // require(__dirname + '/../routes/ws-echo')(server);
-require(__dirname + '/../routes/ws-chat')(server);
+// require(__dirname + '/../routes/ws-chat')(server);
+const io = require('socket.io')(server);
+
+io.on('connection', socket => {
+  socket.on('aaa', msg => {
+    console.log('aaa:', msg);
+    socket.emit('bbb', msg);
+  })
+});
+
 
 /**
  * Normalize a port into a number, string, or false.
