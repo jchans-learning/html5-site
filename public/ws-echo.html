@@ -39,7 +39,7 @@
                 case 'connectBtn':
                     if (socket && socket.readyState === WebSocket.OPEN)
                         return;
-                    socket = new WebSocket('ws://echo.websocket.org');
+                    socket = new WebSocket('ws://localhost:3000');
                     socket.addEventListener('open', myOpen);
                     socket.addEventListener('message', myMsg);
                     socket.addEventListener('close', myClose);

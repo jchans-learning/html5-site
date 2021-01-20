@@ -10,7 +10,7 @@ const createEchoServer = server => {
         ws.on('message', message => {
             ws.send(message);
         })
-        ws.send(連線了);
+        ws.send('連線了');
     });
 }
 
